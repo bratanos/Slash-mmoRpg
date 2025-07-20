@@ -54,7 +54,7 @@ void UTP_WeaponComponent::Fire()
 		UGameplayStatics::PlaySoundAtLocation(this, FireSound, Character->GetActorLocation());
 	}
 	
-	// Try and play a firing animation if specified
+	// Try and play a firing animation if specified if not 3asba lik w khw
 	if (FireAnimation != nullptr)
 	{
 		// Get the animation object for the arms mesh
