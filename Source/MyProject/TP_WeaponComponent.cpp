@@ -54,7 +54,7 @@ void UTP_WeaponComponent::Fire()
 		UGameplayStatics::PlaySoundAtLocation(this, FireSound, Character->GetActorLocation());
 	}
 	
-	// Try and play a firing animation if specified if not i'll rape you :)
+	// Try and play a firing animation if specified if not na3mel courda
 	if (FireAnimation != nullptr)
 	{
 		// Get the animation object for the arms mesh
