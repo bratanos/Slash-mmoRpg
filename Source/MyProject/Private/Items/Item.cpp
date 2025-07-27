@@ -3,6 +3,7 @@
 
 #include "Items/Item.h"
 #include "DrawDebugHelpers.h"
+#include "MyProject/MyProject.h"
 
 #define THIRTY 30
 
