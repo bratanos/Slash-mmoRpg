@@ -2,8 +2,8 @@
 
 
 #include "Items/Item.h"
+#include "MyProject/DebugMacros.h"
 #include "DrawDebugHelpers.h"
-#include "MyProject/MyProject.h"
 
 
 
@@ -19,22 +19,20 @@ AItem::AItem()
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	FVector Location = GetActorLocation();
-	FVector Forward = GetActorForwardVector();
-	UWorld* World= GetWorld();
-	
-	
-	DRAW_SPHERE(Location);
-	DRAW_LINE(Location,Location+Forward*100.f);
-	
-	
 }
 
 // Called every frame
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	//Movement rate is in units of cm/s
+	float MovementRate = 50.f;
+	//MovementRate * DeltaTime (cm/s) * (s/frame) = cm/frame
+	float RotationRate = 45.f;
+	AddActorWorldOffset(FVector(MovementRate * DeltaTime,0.f,0.f));
+	AddActorWorldRotation(FRotator(0.f, RotationRate * DeltaTime,0.f));
+	DRAW_SPHERE_SingleFrame(GetActorLocation());
+	DRAW_VECTOR_SingleFrame(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100.f);
 	
 
 }
