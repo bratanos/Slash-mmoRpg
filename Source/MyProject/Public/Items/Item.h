@@ -20,8 +20,11 @@ public:
 protected:
 	virtual void BeginPlay() override;
 private :
+	UPROPERTY(VisibleAnywhere)
 	float RunningTime;
+	UPROPERTY(EditAnywhere)
 	float Amplitude = 0.25f; // Amplitude of the sine wave for vertical movement
-	float Frequency = 1.f; // Frequency of the sine wave for vertical movement
+	UPROPERTY(EditAnywhere)
+	float Frequency = 5.f; // Frequency of the sine wave for vertical movement
 	
 };
