@@ -19,12 +19,20 @@ public:
 	
 protected:
 	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Sine Parameters")
+	float Amplitude = 0.25f; // Amplitude of the sine wave for vertical movement
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Sine Parameters")
+	float Frequency = 5.f; // Frequency of the sine wave for vertical movement
+
+	UFUNCTION(BlueprintPure, Category="Sine Parameters")
+	float TransformedSin();
+
+	UFUNCTION(BlueprintPure, Category="Sine Parameters")
+	float TransformedCos();
 private :
 	UPROPERTY(VisibleAnywhere)
 	float RunningTime;
-	UPROPERTY(EditAnywhere)
-	float Amplitude = 0.25f; // Amplitude of the sine wave for vertical movement
-	UPROPERTY(EditAnywhere)
-	float Frequency = 5.f; // Frequency of the sine wave for vertical movement
-	
+
 };
