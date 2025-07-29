@@ -4743,3 +4743,6 @@ Content/Medieval_Sewer_Dungeon/Blueprints/Empty_Tunnel/BP_Large_Short_Tunnel_2.u
 Content/Medieval_Sewer_Dungeon/Blueprints/Empty_Tunnel/BP_Large_Short_Tunnel_3.uasset
 Content/Medieval_Sewer_Dungeon/Blueprints/Empty_Tunnel/BP_Large_Short_Tunnel_4.uasset
 Content/Medieval_Sewer_Dungeon/Blueprints/Empty_Tunnel/BP_Large_Short_Tunnel_5.uasset
+Source/MyProject/DebugMacros.h
+Source/MyProject/Private/Items/Item.cpp
+Source/MyProject/Public/Items/Item.h
