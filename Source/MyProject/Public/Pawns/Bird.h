@@ -8,6 +8,7 @@
 #include "Bird.generated.h"
 
 class UCapsuleComponent;
+class USkeletalMeshComponent;
 UCLASS()
 class MYPROJECT_API ABird : public APawn
 {
@@ -21,10 +22,13 @@ public:
     virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 protected:
 	virtual void BeginPlay() override;
+	void MoveForward(float Value);
 
 private:
 	UPROPERTY(VisibleAnywhere)
 	UCapsuleComponent* Capsule;
+	UPROPERTY(VisibleAnywhere)
+	USkeletalMeshComponent* BirdMesh;
 	
 	
 	

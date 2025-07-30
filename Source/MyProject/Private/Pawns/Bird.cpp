@@ -3,14 +3,19 @@
 
 #include "Pawns/Bird.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 
 // Sets default values
 ABird::ABird()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	Capsule = CreateDefaultSubobject<UCapsuleComponent>("Capsule");
+	Capsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
 	SetRootComponent(Capsule);
+	BirdMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("BirdMesh"));
+	BirdMesh->SetupAttachment(GetRootComponent());
+	AutoPossessPlayer = EAutoReceiveInput::Player0;
+	
 
 }
 
@@ -19,6 +24,10 @@ void ABird::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ABird::MoveForward(float Value)
+{
 }
 
 // Called every frame
@@ -31,6 +40,11 @@ void ABird::Tick(float DeltaTime)
 void ABird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAxis(TEXT("Move Forward / Backward"), this, &ABird::MoveForward);
+	PlayerInputComponent->BindAxis(TEXT("Move Right / Left"));
+
+	
 
 }
 
+ 
