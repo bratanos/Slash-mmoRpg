@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Components/CapsuleComponent.h"
 #include "Bird.generated.h"
+
 
 UCLASS()
 class MYPROJECT_API ABird : public APawn
@@ -20,7 +22,10 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-public:	
+private:
+	UPROPERTY(VisibleAnywhere)
+	UCapsuleComponent* Capsule;
+	
 	
 	
 
