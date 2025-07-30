@@ -24,10 +24,17 @@ void ABird::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	
 }
-
+ 
 void ABird::MoveForward(float Value)
 {
+	if ((Controller != nullptr)&&(Value !=0.f))
+	{
+		FVector Forward = GetActorForwardVector();
+		AddMovementInput(Forward, Value);
+	}
+	 
 }
 
 // Called every frame
