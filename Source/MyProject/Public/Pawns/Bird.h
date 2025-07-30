@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "Components/CapsuleComponent.h"
+
 #include "Bird.generated.h"
 
-
+class UCapsuleComponent;
 UCLASS()
 class MYPROJECT_API ABird : public APawn
 {

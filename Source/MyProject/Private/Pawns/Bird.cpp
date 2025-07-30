@@ -2,6 +2,7 @@
 
 
 #include "Pawns/Bird.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 ABird::ABird()
@@ -26,7 +27,6 @@ void ABird::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-
 // Called to bind functionality to input
 void ABird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
