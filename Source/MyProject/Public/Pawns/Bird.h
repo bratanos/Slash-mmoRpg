@@ -9,6 +9,8 @@
 
 class UCapsuleComponent;
 class USkeletalMeshComponent;
+class USpringArmComponent;
+class UCameraComponent;
 UCLASS()
 class MYPROJECT_API ABird : public APawn
 {
@@ -29,6 +31,10 @@ private:
 	UCapsuleComponent* Capsule;
 	UPROPERTY(VisibleAnywhere)
 	USkeletalMeshComponent* BirdMesh;
+	UPROPERTY(VisibleAnywhere)
+	USpringArmComponent* SpringArm;
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* Camera;
 	
 	
 	
