@@ -48,6 +48,25 @@ void ABird::MoveForward(float Value)
 	 
 }
 
+void ABird::Turn(float Value)
+{
+	AddControllerYawInput(Value);
+}
+
+void ABird::LookUp(float Value)
+{
+	AddControllerPitchInput(Value); 
+}
+
+void ABird::MoveRight(float Value)
+{
+	if ((Controller != nullptr)&&(Value !=0.f))
+	{
+		FVector Right = GetActorRightVector();
+		AddMovementInput(Right, Value);
+	}
+}
+
 // Called every frame
 void ABird::Tick(float DeltaTime)
 {
@@ -59,7 +78,9 @@ void ABird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAxis(TEXT("Move Forward / Backward"), this, &ABird::MoveForward);
-	PlayerInputComponent->BindAxis(TEXT("Move Right / Left"));
+	PlayerInputComponent->BindAxis(TEXT("Move Right / Left"),this,  &ABird::MoveRight);
+	PlayerInputComponent->BindAxis(TEXT("Turn Right / Left Mouse"), this, &ABird::Turn);
+	PlayerInputComponent->BindAxis(TEXT("Look Up / Down Mouse"), this, &ABird::LookUp);
 
 	
 
