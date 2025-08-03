@@ -81,6 +81,7 @@ void ABird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis(TEXT("Move Right / Left"),this,  &ABird::MoveRight);
 	PlayerInputComponent->BindAxis(TEXT("Turn Right / Left Mouse"), this, &ABird::Turn);
 	PlayerInputComponent->BindAxis(TEXT("Look Up / Down Mouse"), this, &ABird::LookUp);
+	
 
 	
 
