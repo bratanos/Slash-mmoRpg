@@ -2,6 +2,8 @@
 
 
 #include "Characters/SarahCharacter.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
 
 
 // Sets default values
@@ -9,6 +11,14 @@ ASarahCharacter::ASarahCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	bUseControllerRotationRoll = false;
+	bUseControllerRotationYaw = false;
+	bUseControllerRotationPitch = false;
+	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	SpringArm->SetupAttachment(GetRootComponent());
+	SpringArm->TargetArmLength = 300.0f;
+	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	Camera->SetupAttachment(SpringArm);
 
 }
 
@@ -23,11 +33,33 @@ void ASarahCharacter::MoveForward(float Value)
 {
 	if (Controller !=nullptr && Value !=0.f)
 	{
-		FVector Forward = GetActorForwardVector();
-		AddMovementInput(Forward, Value);
+		//find out which way is forward
+		const FRotator ControlRotation = GetControlRotation();
+		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
 		
 	}
 	
+}
+
+void ASarahCharacter::MoveRight(float Value)
+{
+	if (Controller != nullptr && Value !=0.f)
+	{
+		FVector Right = GetActorRightVector();
+		AddMovementInput(Right, Value);
+	}
+	
+}
+
+void ASarahCharacter::Turn(float Value)
+{
+	AddControllerYawInput(Value);
+	
+}
+
+void ASarahCharacter::LookUp(float Value)
+{
+	AddControllerPitchInput(Value);
 }
 
 // Called every frame
@@ -42,6 +74,9 @@ void ASarahCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAxis(TEXT("Move Forward / Backward"), this, &ASarahCharacter::MoveForward);
+	PlayerInputComponent->BindAxis(TEXT("Move Right / Left"), this, &ASarahCharacter::MoveRight);
+	PlayerInputComponent->BindAxis(TEXT("Turn Right / Left Mouse"), this, &ASarahCharacter::Turn);
+	PlayerInputComponent->BindAxis(TEXT("Look Up / Down Mouse"), this, &ASarahCharacter::LookUp);
 	
 
 }
