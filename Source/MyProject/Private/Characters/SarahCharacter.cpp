@@ -36,7 +36,7 @@ void ASarahCharacter::MoveForward(float Value)
 		//find out which way is forward
 		const FRotator ControlRotation = GetControlRotation();
 		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
-		
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	}
 	
 }
