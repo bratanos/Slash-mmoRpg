@@ -4,6 +4,7 @@
 #include "Characters/SarahCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 
 // Sets default values
@@ -19,6 +20,8 @@ ASarahCharacter::ASarahCharacter()
 	SpringArm->TargetArmLength = 300.0f;
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(SpringArm);
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 360.0f, 0.0f);
 
 }
 
@@ -36,7 +39,8 @@ void ASarahCharacter::MoveForward(float Value)
 		//find out which way is forward
 		const FRotator ControlRotation = GetControlRotation();
 		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
-		
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(Direction, Value);
 	}
 	
 }
@@ -45,8 +49,11 @@ void ASarahCharacter::MoveRight(float Value)
 {
 	if (Controller != nullptr && Value !=0.f)
 	{
-		FVector Right = GetActorRightVector();
-		AddMovementInput(Right, Value);
+		//find out which way is right
+		const FRotator ControlRotation = GetControlRotation();
+		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		AddMovementInput(Direction, Value);
 	}
 	
 }
