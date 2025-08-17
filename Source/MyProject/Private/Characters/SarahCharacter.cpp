@@ -56,10 +56,11 @@ void ASarahCharacter::MoveRight(float Value)
 		AddMovementInput(Direction, Value);
 		FVector Right = GetActorRightVector();
 		AddMovementInput(Right, Value);
+		
 	}
 	}
 	
-}
+
 
 void ASarahCharacter::Turn(float Value)
 {
