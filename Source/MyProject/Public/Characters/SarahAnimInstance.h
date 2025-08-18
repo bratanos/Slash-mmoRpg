@@ -19,7 +19,7 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	class ASarahCharacter* SarahCharacter;
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
-	class UCharacterMovementComponent* CharacterMovement;
+	class UCharacterMovementComponent* SarahCharacterMovement;
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
 	float GroundSpeed;
 };

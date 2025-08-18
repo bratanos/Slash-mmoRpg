@@ -4,6 +4,7 @@
 #include "Characters/SarahAnimInstance.h"
 #include "Characters/SarahCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 
 void USarahAnimInstance::NativeInitializeAnimation()
 {
@@ -12,11 +13,13 @@ void USarahAnimInstance::NativeInitializeAnimation()
 	SarahCharacter= Cast<ASarahCharacter>(TryGetPawnOwner());
 	if (SarahCharacter)
 	{
-		SarahCharacter->GetCharacterMovement();
+		SarahCharacterMovement=SarahCharacter->GetCharacterMovement();
 	}
 }
 
 void USarahAnimInstance::NativeUpdateAnimation(float DeltaTime)
 {
 	Super::NativeUpdateAnimation(DeltaTime);
+	GroundSpeed=UKismetMathLibrary::VSizeXY(SarahCharacterMovement->Velocity);
+	
 }
