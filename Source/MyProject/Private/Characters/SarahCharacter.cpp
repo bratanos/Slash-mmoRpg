@@ -54,8 +54,7 @@ void ASarahCharacter::MoveRight(float Value)
 		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		AddMovementInput(Direction, Value);
-		FVector Right = GetActorRightVector();
-		AddMovementInput(Right, Value);
+
 		
 	}
 	}
