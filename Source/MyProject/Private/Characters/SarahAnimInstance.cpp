@@ -20,6 +20,22 @@ void USarahAnimInstance::NativeInitializeAnimation()
 void USarahAnimInstance::NativeUpdateAnimation(float DeltaTime)
 {
 	Super::NativeUpdateAnimation(DeltaTime);
-	GroundSpeed=UKismetMathLibrary::VSizeXY(SarahCharacterMovement->Velocity);
+	if (!SarahCharacter)
+	{
+		SarahCharacter = Cast<ASarahCharacter>(TryGetPawnOwner());
+	}
+	if (SarahCharacter)
+	{
+		SarahCharacterMovement = SarahCharacter->GetCharacterMovement();
+	}
+	if (SarahCharacterMovement)
+	{
+		GroundSpeed = UKismetMathLibrary::VSizeXY(SarahCharacterMovement->Velocity);
+		IsFalling = SarahCharacterMovement->IsFalling();
+	}
+	else
+	{
+		GroundSpeed = 0.f;
+	}
 	
 }

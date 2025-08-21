@@ -58,6 +58,7 @@ void ASarahCharacter::MoveRight(float Value)
 		
 	}
 	}
+
 	
 
 
@@ -71,6 +72,8 @@ void ASarahCharacter::LookUp(float Value)
 {
 	AddControllerPitchInput(Value);
 }
+
+
 
 // Called every frame
 void ASarahCharacter::Tick(float DeltaTime)
@@ -87,6 +90,7 @@ void ASarahCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAxis(TEXT("Move Right / Left"), this, &ASarahCharacter::MoveRight);
 	PlayerInputComponent->BindAxis(TEXT("Turn Right / Left Mouse"), this, &ASarahCharacter::Turn);
 	PlayerInputComponent->BindAxis(TEXT("Look Up / Down Mouse"), this, &ASarahCharacter::LookUp);
+	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed,this, &ACharacter::Jump);
 	
 
 }
