@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "Item.generated.h"
 
+class USphereComponent;
+
 
 
 UCLASS()
@@ -31,10 +33,17 @@ protected:
 
 	UFUNCTION(BlueprintPure, Category="Sine Parameters")
 	float TransformedCos();
-
-
+	
 	template <typename T>
 	T avg(T first, T second);
+
+	UFUNCTION()
+	void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult);
 
 
 private :
@@ -42,6 +51,8 @@ private :
 	float RunningTime;
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* ItemMesh;
+	UPROPERTY(VisibleAnywhere)
+	USphereComponent* Sphere;
 
 };
 

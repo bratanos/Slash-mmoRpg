@@ -4,6 +4,7 @@
 #include "Items/Item.h"
 #include "MyProject/DebugMacros.h"
 #include "DrawDebugHelpers.h"
+#include "Components/SphereComponent.h"
 
 
 
@@ -14,6 +15,8 @@ AItem::AItem()
 	PrimaryActorTick.bCanEverTick = true;
 	ItemMesh = CreateDefaultSubobject <UStaticMeshComponent> (TEXT("ItemMeshComponent"));
 	RootComponent = ItemMesh;
+	Sphere = CreateDefaultSubobject <USphereComponent> (TEXT("Sphere"));
+	Sphere->SetupAttachment(GetRootComponent());
 
 }
 
@@ -21,8 +24,7 @@ AItem::AItem()
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	
+	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnSphereOverlap);
 }
 
 float AItem::TransformedSin()
@@ -35,6 +37,15 @@ float AItem::TransformedCos()
 	return Amplitude *  FMath::Cos(RunningTime * Frequency);
 }
 
+void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	const FString OtherActorName = OtherActor->GetName();
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(1, 15.f, FColor::Green,OtherActorName);
+	}
+}
 
 
 // Called every frame
