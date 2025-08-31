@@ -63,7 +63,7 @@ void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	RunningTime += DeltaTime;
-	SetActorRotation( FRotator(Frequency*RunningTime,0,0) );
+	
 
 
 	
